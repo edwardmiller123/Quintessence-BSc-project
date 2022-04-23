@@ -1,13 +1,13 @@
 
 function scalarfield3
-%define tstart, tend and the number of time steps
+% tstart, tend and the number of time steps
 clear all
 
 tstart = 0;
 tend = 10;
 n = 200;
 tspan = linspace(tstart,tend,n);
-%define initial conditions
+%initial conditions
 minit2 = [-0.9;0.1;0.1;0.1];
 
 % matrix m contains all dependant variables
@@ -23,7 +23,7 @@ z = M(:,4);
 
 
 
-% plotting functions
+% plots
 figure(1);
 plot(T,y1);
 title('Graph of y1 against ln(a)');
@@ -32,11 +32,11 @@ xlabel('ln(a)');
 ylabel('y1');
 axis([0 10 0 1]);
 hold on
-%axis tight
+
 
 F=(3.*(y1.^2))+(3.*(y2.^2))-3.*(x.^2)-(z.^2)-1;
 
-%plot(t,F,'R--');
+
 
 figure(2);
 plot(T,y2);
@@ -44,11 +44,9 @@ title('Graph of y2 against ln(a)');
 legend('\lambda=1 , \sigma=1');
 xlabel('ln(a)');
 ylabel('y2');
-%axis([0 10 0 1]);
-%axis tight
+
 hold on
 
-%plot(t,F,'R--');
 
 
 figure(3);
@@ -62,10 +60,6 @@ axis tight
 hold on
 
 
-
-%plot(t,F,'R--');
-
-
 figure(4);
 plot(T,x);
 title('Graph of x against ln(a)');
@@ -73,35 +67,8 @@ legend('\lambda=1 , \sigma=1');
 xlabel('ln(a)');
 ylabel('x');
 axis([0 10 0 1]);
-%axis tight
-
-hold on
 
 
-%point=1./sqrt(6);
-%pointarray=point.*x0;
-%plot(t,pointarray,'G--');
-
-
-
-%plot(t,F,'R--');
-
-%figure(5);
-%plot3(x,y1,y2,'-');
-%xlabel('x');
-%ylabel('y1');
-%zlabel('y2');
-%axis([-1 1 0 1 0 1]);
-%legend('hide');
-
-%hold on
-
-%Boundary identifying accelerating regime
-
-%[Y1,Y2]=meshgrid(y01,y02);
-%Z=meshgrid(z0);
-%X=sqrt((1./3).*(3.*(Y1.^2)+(3.*(Y2.^2))-(Z.^2)-1));
-%plot3(X,Y1,Y2,'G-');
 
 figure(6);
  omega_phi=(x.^2)+(y1.^2)+(y2.^2);
@@ -114,19 +81,8 @@ figure(6);
    axis tight
    hold on
    plot(T,F,'R--');
-   
-%figure(7);
 
-
-%acceleration condition (2d)
-
-
-
-
-
-
-
-%INTEGRATION FUNCTION
+%Intergration function
 
 
 function ddt2 = integratingfunction2(T,M)
@@ -147,7 +103,7 @@ z=M(4);
 
 
 
-% system of ODE’s:
+%ODEâ€™s:
 ddt2 = zeros(size(M));
 ddt2(1) = (-3.*x) + (lambda.*sqrt(3./2).*(y1.^2))+(sigma.*sqrt(3./2).*(y2.^2))+x.*(2.*(z.^2)+3.*(x.^2)+(3./2).*(1-(x.^2)-(y1.^2)-(y2.^2)-(z.^2)));
 ddt2(2) = (-lambda.*sqrt(3./2).*x.*y1)+y1.*(2.*(z.^2)+3.*(x.^2)+(3./2).*(1-(x.^2)-(y1.^2)-(y2.^2)-(z.^2)));
