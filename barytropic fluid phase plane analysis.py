@@ -33,14 +33,5 @@ y = odeint(model,y0,lna)
 
 plt.plot(lna,y)
 
-
-
-#%%
-x=np.arange(-1,1.1,0.1)
-y=np.arange(0,2.1,0.1)
-
-X,Y=np.meshgrid(x,y)
-
-xprime= - 3 * X + lmbda * mth.sqrt(3 / 2 ) * y ** 2 + (3 / 2) * X * (2 * X ** 2 + gamma * (1 - (X ** 2) - (Y ** 2)))
-yprime= - lmbda * mth.sqrt(3 / 2) * X * Y + (3 / 2) * Y * (2 * X ** 2 + gamma * (1 -  X ** 2 - Y ** 2))    
+   
 
