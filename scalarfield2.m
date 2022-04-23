@@ -1,16 +1,16 @@
  function scalarfield2
-    %define tstart, tend and the number of time steps
+    %tstart, tend and the number of time steps
    
     tstart = 0;
     tend = 12;
     n = 200;
     tspan = linspace(tstart,tend,n);
-    %define initial conditions 
+    %initial conditions 
     minit = [-0.1;0.1;0.9];
     
     % matrix m contains all dependant variables
     [t,m] = ode45(@integratingfunction, tspan, minit);
-    %define output variables:
+    %output variables:
     x = m(:,1);
     
     y = m(:,2);
@@ -20,7 +20,7 @@
  
     
     
-    % plotting functions 
+    %plots 
     figure(1);
     
     plot(t,x);
@@ -104,11 +104,11 @@
     
     
     
-   %INTEGRATION FUNCTION
+   %Intergration function
     
    
         function ddt = integratingfunction(t,m)
-            % Define constants 
+            %Constants 
             
             lambda=5;
             
@@ -120,7 +120,7 @@
             
            
             
-          % system of ODE’s:
+          % ODEâ€™s:
             ddt = zeros(size(m));
             ddt(1) = -3.*x + lambda.*sqrt(3./2).*(y.^2)+x.*(2.*(z.^2)+3.*(x.^2)+(3./2).*(1-(x.^2)-(y.^2)-(z.^2)));
             ddt(2) = -lambda.*sqrt(3./2).*x.*y+y.*(2.*(z.^2)+3.*(x.^2)+(3./2).*(1-(x.^2)-(y.^2)-(z.^2)));
